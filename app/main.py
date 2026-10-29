@@ -123,3 +123,8 @@ def find_contacts(req: FindContactsRequest) -> dict:
     r = _run(get_automation().enricher.find_contacts, req.company_id, req.include_titles, req.exclude_titles, req.limit)
     return {"company_id": r.company_id, "created_contact_ids": r.created,
             "skipped_existing": r.skipped_existing, "candidates_seen": r.candidates_seen}
+
+
+@app.get("/health")
+def health_check():
+    return {"status": "ok"}
